@@ -1,0 +1,40 @@
+Pseudocode: 
+Def annealing(path, T, cooling)
+oldCost = calcCost(path)
+bestPath = path
+	While T > cooling
+		//swap two vertices in path and recalculate
+		New_path = createNewPath(path)
+Newcost = calcCost(new_path)	
+		If newcost <= oldCost //more optimal than the current solution
+			Path = newpath
+			If newCost <= cost(bestPath)	//most optimal solution so far
+				bestPath = path
+		Else if Math.exp(oldCost-newCost)/Temp > rand() 	//maybe, maybe not
+			Path = newpath
+		T = T*cooling
+	End while
+Return bestPath
+
+Def createNewPath(path)
+	One = rand()*path.size()
+	Two = rand()*path.size()
+	Temp = path[one]
+	Path[one] = Path[two]
+	Path[two] = temp
+	Return path
+
+Def CalCost(matrix, path, numCities)
+Cost = matrix[path[0],path[1]] + matrix[path[1]][path[2]] … + matrix[path[numCities-1][numCities]]
+Return Cost
+
+Def createMatrix(file)
+	i=0,j=1
+	Arr[n-1][n-1] = 0 //initalize all distances to 0
+	While !EOF
+		Read sets of coordinates
+		Dist = calcDistance(Coord1, Coord2)
+		Arr[i][j] and arr[j][i] = dist
+	End while
+
+RUN: createMatrix() → Annealing()	
