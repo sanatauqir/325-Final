@@ -35,4 +35,6 @@ def eucDist(city1, city2):
 	
 # get the filename from command line
 fil = sys.argv[-1]	
+t0 = time.time()
 mat = createMatrix(fil);
+print "time is", time.time() - t0
