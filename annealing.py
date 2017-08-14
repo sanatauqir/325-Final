@@ -37,4 +37,11 @@ def eucDist(city1, city2):
 fil = sys.argv[-1]	
 t0 = time.time()
 mat = createMatrix(fil);
+
 print "time is", time.time() - t0
+
+tour = ".tour"
+outfil = fil + tour
+f=open(outfil, "w+")
+f.write("%s\n" % mat)
+f.close()
