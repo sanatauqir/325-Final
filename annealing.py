@@ -36,3 +36,9 @@ def eucDist(city1, city2):
 # get the filename from command line
 fil = sys.argv[-1]	
 mat = createMatrix(fil);
+
+tour = ".tour"
+outfil = fil + tour
+f=open(outfil, "w+")
+f.write("%s\n" % mat)
+f.close()
