@@ -7,6 +7,8 @@ def Annealing(matrix, T, cooling, numCities):
 	path = []
 	for i in xrange(0, numCities):
 		path.append(i)
+	#the path returns to the first city
+	path.append(0)
 	oldCost = calcCost(matrix, path, numCities)
 	bestPath = path
 	while T > cooling:
