@@ -3,6 +3,31 @@ import math
 import time
 import random
 
+def Annealing(matrix, T, cooling, numCities):
+	path = []
+	for i in xrange(0, numCities):
+		path.append(i)
+	oldCost = calcCost(matrix, path, numCities)
+	bestPath = path
+	while T > cooling:
+		#swap two vertices in path and recalculate
+		newPath = createNewPath(path)
+		newCost = calcCost(matrix, newPath, numCities)	
+		if newCost <= oldCost: #more optimal than the current solution
+			path = newPath
+			if newCost <= calcCost(matrix, bestPath, numCities):	#most optimal solution so far
+				bestPath = path
+		elif Math.exp(oldCost-newCost)/T > rand():
+			path = newPath
+		T = T*cooling
+	return bestPath
+	
+def calcCost(matrix, path, numCities):
+	return 20
+	
+def createNewPath(path):
+	return 1
+
 def createMatrix(file):
 	allCities = []
 	#read in from the file and place x,y coordinates into an array of cities
@@ -37,6 +62,10 @@ def eucDist(city1, city2):
 fil = sys.argv[-1]	
 t0 = time.time()
 mat = createMatrix(fil);
+if len(mat) < 400:
+	Annealing(mat, 1000, .05, len(mat))
+else:
+	Annealing(mat, 1000, .01, len(mat))
 
 print "time is", time.time() - t0
 
