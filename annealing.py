@@ -62,10 +62,11 @@ def createMatrix(file):
 	#read in from the file and place x,y coordinates into an array of cities
 	with open("tsp_example_1.txt", "r") as f:
 		for line in f:
-			oneCity = line.split()
-			city = {'c':int(oneCity[0]), 'x':int(oneCity[1]), 'y':int(oneCity[2])}
-			#print city
-			allCities.append(city)
+			if line != '\n'
+				oneCity = line.split()
+				city = {'c':int(oneCity[0]), 'x':int(oneCity[1]), 'y':int(oneCity[2])}
+				#print city
+				allCities.append(city)
 	#print allCities
 	numCities = len(allCities)
 	# matrix creation
