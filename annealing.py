@@ -49,7 +49,7 @@ def createNewPath(path):
 
 	#make sure the vertecies are different numbers
 	while(randNum2 == randNum1):
-		randNum2 = random.randint(1, len(path) -1)
+		randNum2 = random.randint(1, len(path) -2)
 
 	#flip vertecies	
 	path[randNum1], path[randNum2] = path[randNum2], path[randNum1]
