@@ -19,21 +19,48 @@ def Annealing(matrix, T, cooling, numCities):
 			path = newPath
 			if newCost <= calcCost(matrix, bestPath, numCities):	#most optimal solution so far
 				bestPath = path
-		elif Math.exp(oldCost-newCost)/T > rand():
+		#small corrections to syntax
+		#elif Math.exp(oldCost-newCost)/T > rand():
+		elif math.exp(oldCost-newCost)/T > random.random():
 			path = newPath
 		T = T*cooling
 	return bestPath
 	
 def calcCost(matrix, path, numCities):
-	return 20
+	x = 0
+	pathLength = 0
+	matrixPath = 0
+	#calculate the path length from 0 -> 0
+	while (x < numCities):
+		xVal = path[x]
+		yVal = path[x + 1]
+		pathLength = matrix[xVal][yVal] + pathLength
+		x = x + 1
+	#for testing
+	print("test path length = ", pathLength)
+	#return the new pathLength
+	return pathLength
 	
 def createNewPath(path):
-	return 1
+	#get 2 random vertecies to flip
+	#exclude 0th index and the last index since these are the starting location
+	randNum1 = random.randint(1, len(path) -2)
+	randNum2 = random.randint(1, len(path) -2)
+
+	#make sure the vertecies are different numbers
+	while(randNum2 == randNum1):
+		randNum2 = random.randint(1, len(path) -1)
+
+	#flip vertecies	
+	path[randNum1], path[randNum2] = path[randNum2], path[randNum1]
+	#for testing
+	print("new test path = ", path)
+	return path
 
 def createMatrix(file):
 	allCities = []
 	#read in from the file and place x,y coordinates into an array of cities
-	with open(file, "r") as f:
+	with open("tsp_example_1.txt", "r") as f:
 		for line in f:
 			oneCity = line.split()
 			city = {'c':int(oneCity[0]), 'x':int(oneCity[1]), 'y':int(oneCity[2])}
