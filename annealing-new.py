@@ -8,7 +8,7 @@ def Annealing(matrix, T, cooling, numCities):
 	for i in xrange(0, numCities):
 		path.append(i)
 	#the path returns to the first city
-	path.append(0)
+	#path.append(0)
 	oldCost = calcCost(matrix, path, numCities)
 	print "oldCost",
 	print oldCost
@@ -16,10 +16,10 @@ def Annealing(matrix, T, cooling, numCities):
 
 	while T > 0:
 		#swap two vertices in path and recalculate
-		randNum1 = random.randint(1, len(path) -2)
-		randNum2 = random.randint(1, len(path) -2)
+		randNum1 = random.randint(0, len(path) -2)
+		randNum2 = random.randint(0, len(path) -2)
 		while(randNum2 == randNum1):
-			randNum2 = random.randint(1, len(path) -2)
+			randNum2 = random.randint(0, len(path) -2)
 
 		newPath = createNewPath(path, randNum1, randNum2)
 		newCost = calcCost(matrix, newPath, numCities)
@@ -46,12 +46,13 @@ def calcCost(matrix, path, numCities):
 	pathLength = 0
 	matrixPath = 0
 	#calculate the path length from 0 -> 0
-	while (x < numCities):
+	while (x < numCities-1):
 		xVal = path[x]
 		yVal = path[x + 1]
 		pathLength = matrix[xVal][yVal] + pathLength
 		x = x + 1
 	#for testing
+	pathLength = matrix[yVal][path[0]]+pathLength
 	print("test path length = ", pathLength)
 	#return the new pathLength
 	return pathLength
@@ -111,12 +112,11 @@ else:
 print "time is", time.time() - t0
 print "best path found was "
 final =  calcCost(mat, best, len(mat))
-print "final distance"
-print final
+final = int(final)
 tour = ".tour"
 outfil = fil + tour
 f=open(outfil, "w+")
 f.write("%s\n" % final)
 for x in best:
-	f.write("%s\n" % x)
+		f.write("%s\n" % x)
 f.close()
