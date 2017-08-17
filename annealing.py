@@ -60,7 +60,7 @@ def createNewPath(path):
 def createMatrix(file):
 	allCities = []
 	#read in from the file and place x,y coordinates into an array of cities
-	with open("tsp_example_1.txt", "r") as f:
+	with open(file, "r") as f:
 		for line in f:
 			if line != '\n':
 				oneCity = line.split()
@@ -89,7 +89,7 @@ def eucDist(city1, city2):
 	return dist
 	
 # get the filename from command line
-fil = sys.argv[-1]	
+fil = sys.argv[1]	
 t0 = time.time()
 mat = createMatrix(fil);
 if len(mat) < 400:
