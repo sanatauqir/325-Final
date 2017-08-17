@@ -62,7 +62,7 @@ def createMatrix(file):
 	#read in from the file and place x,y coordinates into an array of cities
 	with open("tsp_example_1.txt", "r") as f:
 		for line in f:
-			if line != '\n'
+			if line != '\n':
 				oneCity = line.split()
 				city = {'c':int(oneCity[0]), 'x':int(oneCity[1]), 'y':int(oneCity[2])}
 				#print city
@@ -93,14 +93,20 @@ fil = sys.argv[-1]
 t0 = time.time()
 mat = createMatrix(fil);
 if len(mat) < 400:
-	Annealing(mat, 1000, .05, len(mat))
+	best = Annealing(mat, 1000, .05, len(mat))
 else:
-	Annealing(mat, 1000, .01, len(mat))
-
+	best = Annealing(mat, 1000, .01, len(mat))
+print "best",
+print best
 print "time is", time.time() - t0
-
+print "best path found was "
+final =  calcCost(mat, best, len(mat))
+print "final distance"
+print final
 tour = ".tour"
 outfil = fil + tour
 f=open(outfil, "w+")
-f.write("%s\n" % mat)
+f.write("%s\n" % final)
+for x in best:
+	f.write("%s\n" % x)
 f.close()
